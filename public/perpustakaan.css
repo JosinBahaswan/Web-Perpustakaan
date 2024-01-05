@@ -434,3 +434,51 @@ body {
 .form-container button {
     align-self: flex-start;
 }
+
+/* pop up pinjam koleksi*/
+.popup {
+color: var(--primary);
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.7);
+justify-content: center;
+align-items: center;
+}
+
+.popup-content {
+background-color: #fefefe;
+padding: 20px;
+border-radius: 5px;
+text-align: center;
+}
+
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.close:hover {
+color: #000;
+}
+
+.popup-content {
+background-color: #fefefe;
+padding: 80px; /* Perubahan padding untuk memberikan ruang lebih di dalam kotak */
+border-radius: 5px;
+text-align: left;
+width: 400px; /* Lebar formulir pop-up */
+max-width: 80%; /* Lebar maksimum formulir pop-up */
+}
+
+.form-group {
+margin-bottom: 15px;
+border: 1px solid #ccc; /* Warna dan ketebalan batas disesuaikan dengan preferensi Anda */
+padding: 10px; /* Tambahan padding untuk memberikan ruang antara teks dan batas */
+}

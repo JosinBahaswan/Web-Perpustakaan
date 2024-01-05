@@ -29,7 +29,7 @@
                 <a href="#">home</a>
                 <a href="#">tentang kami</a>
                 <a href="#">Pinjam</a>
-                <a href="#">Koleksi</a>
+                <a href="{{ route('koleksi') }}">Koleksi</a>
             </div>
             <div class="navbar-extra">
                 <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
@@ -84,7 +84,7 @@
                     <div class="book">
                         <img src="{{ asset('storage/storage/'.$perpustakaan->gambar)}}" alt="{{ $perpustakaan->judul}}" />
                         <h3>{{ $perpustakaan->judul }}</h3>
-                        <p>Author: {{ $perpustakaan->penulis }}</p>
+                        <p>{{ $perpustakaan->penulis }}</p>
                     </div>
                 @endforeach
                 </div>
@@ -114,4 +114,4 @@
             feather.replace();
         </script>
     </body>
-    </html>
+</html>
