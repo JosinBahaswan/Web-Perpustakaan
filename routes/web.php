@@ -16,8 +16,13 @@ Route::put('Perpustakaans/{id}', [PerpustakaanController::class, 'update'])->nam
 Route::delete('Perpustakaans/{id}', [PerpustakaanController::class, 'destroy'])->name('perpustakaans.destroy');
 Route::get('Perpustakaans/{id}', [PerpustakaanController::class, 'show'])->name('Perpustakaans.show');
 
+Route::get('/koleksi', [PerpustakaanController::class, 'koleksi'])->name('koleksi');
+// Route::get('storage/{filename}', 'PerpustakaanController@showImage')->name('storage.show');
+// Route::get('/koleksi', 'LibraryController@yourMethod');
+
+
 Route::get('/perpustakaan', [LibraryController::class, 'index']);
-Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi');
+// Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi');
 
 // routes/web.php
 Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.anggota');

@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tittle here</title>
+    <title>Koleksi</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +27,7 @@
     <a href="#" class="navbar-logo">Perpustakaan <span>Qu</span></a>
 
     <div class="navbar-nav">
-        <a href="#home">home</a>
+        <a href="http://127.0.0.1:8000/perpustakaan">home</a>
         <a href="#about">tentang kami</a>
         <a href="#collection">Koleksi</a>
     </div>
@@ -43,7 +44,7 @@
         <h2><span>Koleksi</span> Buku</h2>
 
         <div class="row">
-        @foreach($Perpustakaans as $perpustakaan)
+        @foreach($perpustakaans as $perpustakaan)
             <div class="book">
                 <img src="{{ asset('storage/storage/'.$perpustakaan->gambar)}}" alt="{{ $perpustakaan->judul}}" />
                 <h3>{{ $perpustakaan->judul }}</h3>

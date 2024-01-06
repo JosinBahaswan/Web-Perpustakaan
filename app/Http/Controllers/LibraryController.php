@@ -53,4 +53,10 @@ class LibraryController extends Controller
 
     //     return view('perpustakaan', compact('books'));
     }
+    // public function yourMethod()
+    // {
+    //     $Perpustakaans = Perpustakaan::all(); // Replace this with your actual query to fetch data
+
+    //     return view('koleksi', compact('Perpustakaans'));
+    // }
 }

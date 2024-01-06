@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="app">
+        <!-- navbar start -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">ADMIN PERPUS</a>
@@ -31,6 +32,7 @@
                 </div>
             </div>
         </nav>
+        <!-- navbar end -->
     <div class="main-wrapper">
             <div class="main-wrapper">
                 <!-- <div class="container-fluid"> -->

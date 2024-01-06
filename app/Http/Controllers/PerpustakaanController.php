@@ -91,9 +91,11 @@ class PerpustakaanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
+    public function show($id)
     {
-        dd('show');
+        $perpustakaan = Perpustakaan::find($id);
+
+        return view('perpustakaans.show', compact('perpustakaan'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -163,6 +165,26 @@ class PerpustakaanController extends Controller
         }
 
         return redirect(route('Perpustakaans.index'))->with('error', 'Sorry, unable to delete this!');
+    }
+
+    // public function showImage($filename)
+    // {
+    //     $path = storage_path("storage/{$filename}");
+
+    //     if (!Storage::exists($path)) {
+    //         abort(404);
+    //     }
+
+    //     $file = Storage::get($path);
+    //     $type = Storage::mimeType($path);
+
+    //     return response($file, 200)->header('Content-Type', $type);
+    // }
+    public function koleksi()
+    {
+        $perpustakaans = Perpustakaan::all(); // Mengambil semua data perpustakaan dari model
+
+        return view('koleksi', compact('perpustakaans'));
     }
 
 }
