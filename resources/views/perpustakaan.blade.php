@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -25,14 +24,28 @@
     <body>
         <!-- navbar start -->
         <nav class="navbar">
-        <a href="#" class="navbar-logo">Perpustakaan <span>Qu</span></a>
+            <a href="#" class="navbar-logo">Perpustakaan <span>Qu</span></a>
+            
             <div class="navbar-nav">
-                <a href="#">home</a>
-                <a href="#">tentang kami</a>
-                <a href="#">Pinjam</a>
+                <a href="http://127.0.0.1:8000/perpustakaan">Home</a>
+                <a href="{{ route('about') }}">Tentang Kami</a>
+                <a href="http://127.0.0.1:8000/pinjam">Pinjam</a>
                 <a href="{{ route('koleksi') }}">Koleksi</a>
             </div>
+            
             <div class="navbar-extra">
+                @if(Auth::check())
+                    <div class="navbar-login-info">
+                        <span>Welcome, {{ Auth::user()->name }}</span>
+                        <button class="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+                @endif
+                
                 <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
             </div>
         </nav>
@@ -42,34 +55,33 @@
         <section class="hero" id="home">
             <div class="kotak-hero">
                 <main class="content">
-                <h1>online<span> Library</span></h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-                    nisi.
-                </p>
-                <a href="#" class="cta">Daftar</a> <a href="#" class="cta2">Login</a>
-                <!--cta = call to action -->
+                    <h1>online<span> Library</span></h1>
+                    <p>
+                    Selamat datang di Perpustakaan Qu, sebuah tempat di mana pengetahuan dan imajinasi bersatu untuk membentuk pengalaman belajar yang tak terlupakan.
+                    </p>
+                    @guest
+                    <div class="box-login">
+                        <a href="{{ route('register') }}" class="cta">Daftar</a>
+                        <a href="{{ route('login') }}" class="cta2">Login</a>
+                    </div>
+                    @else
+                        <span class="nama">Welcome, {{ Auth::user()->name }}</span>
+                    @endguest
                 </main>
             </div>
         </section>
 
         <!--section about-->
         <section id="about" class="about">
-            <h2><span>tentang</span>kami</h2>
+            <h2><span>Tentang</span> Kami</h2>
             <div class="row">
                 <div class="about-img">
                     <img src="{{ asset('images/book2.jpg') }}" alt="tentang kami" />
                 </div>
                 <div class="content">
-                    <h3>Kenapa milih kami</h3>
+                    <h3>Kenapa memilih kami</h3>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam,
-                        libero eum. Temporibus aut est quaerat!
-                    </p>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia
-                        commodi sunt laudantium distinctio nam quaerat delectus dolorum
-                        possimus quae a.
+                    Selamat datang di Perpustakaan Qu, sebuah tempat di mana pengetahuan dan imajinasi bersatu untuk membentuk pengalaman belajar yang tak terlupakan. Kami memahami bahwa akses terhadap informasi adalah kunci untuk pertumbuhan pribadi dan perkembangan intelektual. Oleh karena itu, kami dengan bangga menyajikan layanan perpustakaan terbaik untuk mendukung perjalanan pembelajaran dan eksplorasi Anda.
                     </p>
                 </div>
             </div>
@@ -93,7 +105,7 @@
         </section>
 
         <!-- Peminjaman section -->
-        <section id="peminjaman" class="peminjaman">
+        <!-- <section id="peminjaman" class="peminjaman">
         <h2><span>Peminjaman</span> Buku</h2>
             <div class="row">
                 <div class="form-container">
@@ -104,15 +116,17 @@
                     <label for="borrower-name">Nama Peminjam:</label>
                     <input type="text" id="borrower-name" name="borrower-name" required><br>
 
-                    <button type="submit" class="cta">Pinjam</button>
+                    <button type="submit" href="http://127.0.0.1:8000/pinjam" class="cta">Pinjam</button>
                 </form>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Feather icon -->
+        
         <script>
             feather.replace();
         </script>
+
     </body>
 </html>

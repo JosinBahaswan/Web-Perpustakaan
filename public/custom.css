@@ -1,0 +1,39 @@
+/* Add this content in your custom.css file */
+.navbar {
+    background-color: #3498db; /* Change to your preferred color */
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* Change text color to white */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    background-color: #3498db; /* Change to your preferred color */
+    border: none;
+}
+
+.dropdown-item {
+    color: #ffffff !important; /* Change text color to white */
+}
+
+.dropdown-item:hover {
+    background-color: #2980b9; /* Change to your preferred hover color */
+    color: #ffffff !important; /* Change text color on hover */
+}
+
+/* Add this content in your custom.css file */
+#app {
+    background-color: #ecf0f1; /* Change to your preferred background color */
+}
+
+main {
+    background-color: #ffffff; /* Change to your preferred content background color */
+    border-radius: 10px; /* Add rounded corners to the content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    padding: 20px;
+}

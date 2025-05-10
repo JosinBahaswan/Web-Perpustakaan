@@ -14,7 +14,7 @@ class Perpustakaan extends Model
         'judul',
         'penulis',
         'gambar',
-        'price',
+        'ISBN',
         'jumlah',
     ];
 }

@@ -21,7 +21,7 @@ class PerpustakaanFactory extends Factory
             'judul' => Str::random(10),
             'penulis' => fake()->name(),
             'gambar' => fake()->randomNumber(4),
-            'price' => fake()->randomNumber(2), 
+            'ISBN' => fake()->randomNumber(2), 
             'jumlah' => fake()->randomNumber(2), 
         ];
     }

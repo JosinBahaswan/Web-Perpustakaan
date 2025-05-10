@@ -20,10 +20,12 @@ class PerpustakaanController extends Controller
     {
         $search = $request->input('search');
         $Perpustakaans = Perpustakaan::when($search, function ($query, $search) {
-            return $query->where('judul', 'like', '%' . $search . '%');
+            return $query->where('judul', 'like', '%' . $search . '%')
+                    ->orWhere('id', 'like', '%' . $search . '%')
+                    ->orWhere('penulis', 'like', '%' . $search . '%');
         })->get();
     
-        return view('perpustakaans.index', compact('Perpustakaans'));
+        return view('Perpustakaans.index', compact('Perpustakaans'));
     }
 
     /**
@@ -44,7 +46,7 @@ class PerpustakaanController extends Controller
             'judul'   => 'required|string',
             'penulis' => 'required|string',
             'gambar'  => 'required|image|mimes:png,jpg,jpeg',
-            'price'   => 'required|numeric',
+            'ISBN'    => 'required|numeric',
             'jumlah'  => 'required|numeric',
         ]);
         
@@ -62,7 +64,7 @@ class PerpustakaanController extends Controller
             'penulis' => $request->penulis,
             // 'gambar'  => $gambar->hashName(),
             'gambar'  => $filename,
-            'price'   => $request->price,
+            'ISBN'   => $request->ISBN,
             'jumlah'  => $request->jumlah,
         ]);
     
@@ -75,22 +77,6 @@ class PerpustakaanController extends Controller
         }
     }
 
-    // public function store(Request $request) {
-    //     $validator = Perpustakaan::make($request->all(),[
-    //         'gambar' => 'requires|image|mimes:png,jpg,jpeg',
-    //     ]);
-
-    //     if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-
-    //     $gambar = $request-> file('gambar');
-    //     $filename = date('Y-m-d').$gambar->getClientOriginalName();
-    //     $path = 'public/'.$filename;
-
-    //     Storage::disk('public')->put($path,file_get_contents($gambar));
-    // }
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $perpustakaan = Perpustakaan::find($id);
@@ -110,7 +96,6 @@ class PerpustakaanController extends Controller
      */
     public function update(UpdatePerpustakaanRequest $request, string $id)
     {
-        // dd($request->all()); // Add this line
 
         $perpustakaan = Perpustakaan::findOrFail($id);
     
@@ -118,7 +103,7 @@ class PerpustakaanController extends Controller
             'judul'   => 'required|string|max:100|unique:Perpustakaans,judul,' . $id,
             'penulis' => 'sometimes|required|string|max:100',
             'gambar'  => 'sometimes|image|mimes:png,jpg,jpeg',
-            'price'   => 'sometimes|required|numeric|min:1',
+            'ISBN'   => 'sometimes|required|numeric|min:1',
             'jumlah'  => 'sometimes|required|numeric|min:0',
         ]);
     
@@ -139,7 +124,7 @@ class PerpustakaanController extends Controller
         // Update other fields
         $perpustakaan->judul = $request->judul;
         $perpustakaan->penulis = $request->penulis;
-        $perpustakaan->price = $request->price;
+        $perpustakaan->ISBN = $request->ISBN;
         $perpustakaan->jumlah = $request->jumlah;
     
         // Save the updated record
@@ -167,19 +152,6 @@ class PerpustakaanController extends Controller
         return redirect(route('Perpustakaans.index'))->with('error', 'Sorry, unable to delete this!');
     }
 
-    // public function showImage($filename)
-    // {
-    //     $path = storage_path("storage/{$filename}");
-
-    //     if (!Storage::exists($path)) {
-    //         abort(404);
-    //     }
-
-    //     $file = Storage::get($path);
-    //     $type = Storage::mimeType($path);
-
-    //     return response($file, 200)->header('Content-Type', $type);
-    // }
     public function koleksi()
     {
         $perpustakaans = Perpustakaan::all(); // Mengambil semua data perpustakaan dari model

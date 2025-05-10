@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My App</title>
+    <title>ADMIN Data Buku</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -20,26 +20,49 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{asset ('http://127.0.0.1:8000/Perpustakaans#')}}">Data Buku</a>
+                            <a class="nav-link" href="{{ asset('http://127.0.0.1:8000/Perpustakaans#') }}">Data Buku</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">List Anggota</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/admin/users">List Anggota</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Daftar Peminjam</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/admin">Daftar Peminjam</a>
                         </li>
                     </ul>
+
+                    @guest
+                        <!-- Show login button if the user is not logged in -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                        </ul>
+                    @else
+                        <!-- Show user information and logout button if the user is logged in -->
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <span class="nav-link">{{ Auth::user()->name }}</span>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-light">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    @endguest
                 </div>
             </div>
         </nav>
         <!-- navbar end -->
+
     <div class="main-wrapper">
             <div class="main-wrapper">
                 <!-- <div class="container-fluid"> -->
                 <div class="container-fluid">
                     <div class="card mt-5">
                     <div class="card-header">
-                        <h3>PERPUS</h3>
+                        <h3>Data Buku</h3>
                     </div>
                     <div class="card-body">
                         @if (session('success'))
@@ -52,7 +75,7 @@
                         <p>
                         <a class="btn btn-primary" href="{{ route('Perpustakaans.create') }}">NEW Record</a>
                         </p>
-                        <form action="{{ route('Perpustakaans.index') }}" method="GET">
+                            <form action="{{ route('Perpustakaans.index') }}" method="GET">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Cari judul..." name="search" value="{{ request('search') }}">
                                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
@@ -82,7 +105,7 @@
                                 <td>{{ $perpustakaan->judul }}</td>
                                 <td>{{ $perpustakaan->penulis }}</td>
                                 <td><img src="{{ asset('storage/storage/'.$perpustakaan->gambar)}}" alt="{{ $perpustakaan->judul }}" style="max-width: 200px; max-height: 200px;"></td>
-                                <td>{{ $perpustakaan->price }}</td>
+                                <td>{{ $perpustakaan->ISBN }}</td>
                                 <td>{{ $perpustakaan->jumlah }}</td>
                                 <td>
                                     <a href="{{ route('Perpustakaans.edit', ['id' => $perpustakaan->id]) }}" class="btn btn-secondary btn-sm">edit</a>

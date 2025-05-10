@@ -31,7 +31,7 @@ class UpdatePerpustakaanRequest extends FormRequest
             ],
             'penulis' => 'sometimes|required|max:100',
             'gambar' => 'sometimes|image|mimes:png,jpg,jpeg',
-            'price' => 'sometimes|required|numeric|min:1',
+            'ISBN' => 'sometimes|required|numeric|min:1',
             'jumlah' => 'sometimes|required|numeric|min:0',
         ];
 

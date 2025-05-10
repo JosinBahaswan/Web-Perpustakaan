@@ -12,6 +12,8 @@ class LibraryController extends Controller
         $Perpustakaans = Perpustakaan::all();
 
         return view('perpustakaan', ['Perpustakaans' => $Perpustakaans]);
+    }
+}
     //     $books = [
     //         [
     //             'image' => 'images/book1.jpg',
@@ -52,11 +54,10 @@ class LibraryController extends Controller
     //     ];
 
     //     return view('perpustakaan', compact('books'));
-    }
+
     // public function yourMethod()
     // {
     //     $Perpustakaans = Perpustakaan::all(); // Replace this with your actual query to fetch data
 
     //     return view('koleksi', compact('Perpustakaans'));
     // }
-}
